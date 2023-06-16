@@ -1,0 +1,8 @@
+name: ProtectEmbellishment
+version: '1.0.0'
+main: io.example.protectembellishment.Main
+api-version: 1.13
+
+commands:
+  invSave:
+    aliases: "인벤세이브"
