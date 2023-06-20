@@ -55,7 +55,8 @@ public class DenyDrop implements Listener {
         }
 
         playerItems.put(player, keptItems);
-        event.getDrops().clear();
+        //kepyItem만 클리어
+        event.getDrops().removeAll(keptItems);
     }
 
     @EventHandler

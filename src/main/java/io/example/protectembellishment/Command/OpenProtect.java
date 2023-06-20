@@ -13,8 +13,6 @@ import static io.example.protectembellishment.Main.plugin;
 
 public class OpenProtect implements CommandExecutor {
 
-    private Inventory inv;
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player player) {
