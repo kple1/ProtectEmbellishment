@@ -27,10 +27,8 @@ public class DenyDrop implements Listener {
         List<ItemStack> pluginItems = getPluginItems();
         for (ItemStack pluginItem : pluginItems) {
             if (droppedItem.isSimilar(pluginItem)) {
-                // 플레이어가 plugin.yml과 같은 아이템을 드롭한 경우
                 event.setCancelled(true);
-                player.sendMessage("§c[ItemSavePlugin] §4plugin.yml과 같은 아이템을 드롭할 수 없습니다!");
-                return; // 드롭 취소 후 메서드 종료
+                return;
             }
         }
     }
@@ -55,8 +53,9 @@ public class DenyDrop implements Listener {
         }
 
         playerItems.put(player, keptItems);
-        event.getDrops().clear();
+        event.getDrops().removeAll(keptItems);
     }
+
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
@@ -71,13 +70,14 @@ public class DenyDrop implements Listener {
 
     private List<ItemStack> getPluginItems() {
         List<ItemStack> items = new ArrayList<>();
-        for (int i = 0; i < 54; i++) {
-            ItemStack item = plugin.getConfig().getItemStack("protect." + i + ".item");
-            if (item != null) {
-                items.add(item);
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 54; j++) {
+                ItemStack item = plugin.getConfig().getItemStack("inventory." + i + "." + j + ".item");
+                if (item != null) {
+                    items.add(item);
+                }
             }
         }
         return items;
     }
 }
-

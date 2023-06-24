@@ -1,7 +1,7 @@
 package io.example.protectembellishment;
 
 import io.example.protectembellishment.Command.MainCommand;
-import io.example.protectembellishment.Inventory.OpenInventory;
+import io.example.protectembellishment.Listener.CreateNewPage;
 import io.example.protectembellishment.Listener.DenyDrop;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,8 +12,8 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new OpenInventory(), this);
         Bukkit.getPluginManager().registerEvents(new DenyDrop(), this);
+        Bukkit.getPluginManager().registerEvents(new CreateNewPage(), this);
         Bukkit.getPluginCommand("invSave").setExecutor(new MainCommand());
         plugin = this;
     }

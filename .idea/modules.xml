@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProtectEmbellishment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ProtectEmbellishment.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/io.example.ProtectEmbellishment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/io.example.ProtectEmbellishment.main.iml" />
     </modules>
   </component>
 </project>
