@@ -1,5 +1,6 @@
 package io.example.protectembellishment.Listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +21,7 @@ public class DenyDrop implements Listener {
     private Map<Player, List<ItemStack>> playerItems = new HashMap<>();
 
     @EventHandler
-    public void onItemDrop(PlayerDropItemEvent event) {
+    void onItemDrop(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
         ItemStack droppedItem = event.getItemDrop().getItemStack();
 
@@ -34,7 +35,7 @@ public class DenyDrop implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
+    void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         List<ItemStack> pluginItems = getPluginItems();
 
@@ -56,17 +57,19 @@ public class DenyDrop implements Listener {
         event.getDrops().removeAll(keptItems);
     }
 
-
     @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent event) {
+    void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
         List<ItemStack> keptItems = playerItems.getOrDefault(player, new ArrayList<>());
         playerItems.remove(player);
 
-        for (ItemStack item : keptItems) {
-            player.getInventory().addItem(item);
-        }
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            for (ItemStack item : keptItems) {
+                player.getInventory().addItem(item);
+            }
+        });
     }
+
 
     private List<ItemStack> getPluginItems() {
         List<ItemStack> items = new ArrayList<>();
